@@ -4,16 +4,19 @@ import { NavLink } from 'react-router-dom'
 const URL = import.meta.env.VITE_Node_Api_Url;
 
 
-const ReceptionistDashboard = () => {
-  const [receptionist, setReceptionist] = useState([]);
 
-  const getReceptionist = async () => {
+
+
+const PendingStaffDashboard  = () => {
+  const [manager, setManager] = useState([]);
+
+  const getManager = async () => {  
     const response = await axios.get(`${URL}/user`);
-    const guestUsers = response.data.filter((user) => user.subRole === "receptionist")
-    setReceptionist(guestUsers);
+    const guestUsers = response.data.filter((user) => user.subRole === null)
+    setManager(guestUsers);
   }
   useEffect(() => {
-    getReceptionist();
+    getManager();
   }, [URL])
 
 
@@ -23,11 +26,12 @@ const ReceptionistDashboard = () => {
 
       <div className='flex justify-between'>
         <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-          Receptionist
+          Pending Satff
         </h2>
 
       </div>
 
+      {/* With actions */}
       <div className="w-full overflow-hidden rounded-lg shadow-xs">
         <div className="w-full overflow-x-auto">
           <table className="w-full whitespace-no-wrap">
@@ -42,7 +46,7 @@ const ReceptionistDashboard = () => {
 
             <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
               {
-                receptionist.map((data, index) => (
+                manager.map((data, index) => (
                   <tr className="text-gray-700 dark:text-gray-400" key={index}>
                     <td className="px-4 py-3">
                       <div className="flex items-center text-sm">
@@ -54,7 +58,7 @@ const ReceptionistDashboard = () => {
                     </td>
                     <td className="px-4 py-3 text-xs">
                       <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                        {data.subRole}
+                        {data.role}
                       </span>
                     </td>
                     <td className="px-4 py-3">
@@ -88,4 +92,4 @@ const ReceptionistDashboard = () => {
   )
 }
 
-export default ReceptionistDashboard
+export default PendingStaffDashboard

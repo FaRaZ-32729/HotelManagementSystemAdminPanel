@@ -22,6 +22,7 @@ import AllRooms from './components/rooms/AllRooms'
 import UpdateRooms from './components/rooms/UpdateRooms'
 import AllBooking from './components/booking/AllBooking'
 import UpdateBooking from './components/booking/UpdateBooking'
+import PendingStaffDashboard from './components/staff/pendingStaff/PendingStaffDashboard'
 
 const App = () => {
 
@@ -77,6 +78,14 @@ const App = () => {
         },
         {
           path: '/update-receptionist',
+          element: <UpdateReceptionist />
+        },
+        {
+          path: '/pendingStaff-dashboard',
+          element: <PendingStaffDashboard />
+        },
+        {
+          path: '/update-pendingStaff',
           element: <UpdateReceptionist />
         },
         {

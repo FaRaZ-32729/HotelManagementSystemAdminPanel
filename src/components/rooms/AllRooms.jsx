@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { toast } from 'react-toastify';
 const URL = import.meta.env.VITE_Node_Api_Url;
 
 
@@ -23,15 +24,15 @@ const AllRooms = () => {
 
   const handleDeleteRoom = async (id) => {
     try {
-      await axios.delete(`${URL}/room/${id}`);
+      const response =  await axios.delete(`${URL}/room/${id}`);
       setFetchedRooms((remainingRooms) => remainingRooms.filter((data) => data._id != id));
+      toast.success(response.data.msg);
     } catch (error) {
       console.log(error)
     }
 
   }
 
-  // console.log(fetchedRooms)
 
 
 
