@@ -1,14 +1,27 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { NavLink, useParams } from 'react-router-dom'
+const URL = import.meta.env.VITE_Node_Api_Url;
 
 const UpdateBooking = () => {
+    const { id } = useParams();
+    const [booking, setBooking] = useState([]);
+    const getBookings = async () => {
+        try {
+            const response = await axios.get(`${URL}/booking/${id}`);
+            setBooking(response.data.booking);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(() => {
+        getBookings();
+    }, []);
     return (
         <div className="container px-6 mx-auto grid">
             <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Update Bookings
             </h2>
-            {/* General elements */}
-
             <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <label className="block text-sm">
                     <span className="text-gray-700 dark:text-gray-400">Type</span>

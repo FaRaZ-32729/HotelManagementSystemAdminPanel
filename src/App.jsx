@@ -105,7 +105,7 @@ const App = () => {
           element: <AllBooking />
         },
         {
-          path: '/update-booking',
+          path: '/update-booking/:id',
           element: <UpdateBooking />
         },
       ]
