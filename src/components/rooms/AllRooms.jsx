@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 const URL = import.meta.env.VITE_Node_Api_Url;
 
 
@@ -12,7 +12,6 @@ const AllRooms = () => {
     try {
       const response = await axios.get(`${URL}/room/`)
       setFetchedRooms(response.data.rooms)
-      // console.log(response.data)
     } catch (error) {
       console.log(error)
     }
@@ -35,8 +34,6 @@ const AllRooms = () => {
 
 
 
-
-
   return (
     <div className="container grid px-6 mx-auto">
 
@@ -44,6 +41,7 @@ const AllRooms = () => {
         <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
           Rooms
         </h2>
+        <ToastContainer/>
 
         <div className="px-6 my-6">
           <button className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
@@ -71,7 +69,6 @@ const AllRooms = () => {
             <tbody className="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
               {
                 fetchedRooms.map((data, index) => (
-                  // console.log(data),
                   <tr className="text-gray-700 dark:text-gray-400" key={index}>
                     <td className="px-4 py-3">
                       <div className="flex items-center text-sm">

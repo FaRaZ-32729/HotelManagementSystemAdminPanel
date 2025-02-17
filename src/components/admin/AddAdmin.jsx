@@ -1,9 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify';
 const URL = import.meta.env.VITE_Node_Api_Url;
 
 const AddAdmin = () => {
+    const navigate = useNavigate();
     const [admin, setAdmin] = useState({
         role: "admin",
         name: "",
@@ -15,36 +17,30 @@ const AddAdmin = () => {
         e.preventDefault();
 
         const { name, value } = e.target;
-        setAdmin(
-            {
+        setAdmin({
                 ...admin,
                 [name]: value
-            }
-        )
+            });
     }
 
     const addAdmin = async () => {
         try {
             const response = await axios.post(`${URL}/user/`, admin);
-            console.log(response)
+            console.log(response.data.msg)
+            toast.success(response.data.msg);
+            navigate('/admin-dashboard');
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            toast.error(error.response.data.msg);
         }
-        // console.log(response);
     }
-    // useEffect(() => {
-    //     addAdmin();
-    // }, []);
-
-
 
     return (
         <div className="container px-6 mx-auto grid">
             <h2 className="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Add Admin
             </h2>
-            {/* General elements */}
-
+            <ToastContainer position='top-right' autoClose={2000} />
             <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <label className="block text-sm">
                     <span className="text-gray-700 dark:text-gray-400">Name</span>
@@ -64,7 +60,7 @@ const AddAdmin = () => {
                 <div className="my-6">
                     <button className="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" onClick={addAdmin}>
                         {/* <NavLink to='/' >Add Admin</NavLink> */}
-                        add Admin
+                        Add Admin
                     </button>
                 </div>
 

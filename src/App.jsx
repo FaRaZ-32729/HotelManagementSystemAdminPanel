@@ -10,7 +10,6 @@ import AdminDashboard from './components/admin/AdminDashboard'
 import GuestDashboard from './components/guest/GuestDashboard'
 import ManagerDashboard from './components/staff/manager/ManagerDashboard'
 import ReceptionistDashboard from './components/staff/receptionist/ReceptionistDashboard'
-import AddAdmin from './components/Admin/AddAdmin'
 import UpdateAdmin from './components/admin/UpdateAdmin'
 import UpdateGuest from './components/guest/UpdateGuest'
 import UpdateHouseKeeper from './components/staff/housekeeper/UpdateHouseKeeper'
@@ -23,6 +22,7 @@ import UpdateRooms from './components/rooms/UpdateRooms'
 import AllBooking from './components/booking/AllBooking'
 import UpdateBooking from './components/booking/UpdateBooking'
 import PendingStaffDashboard from './components/staff/pendingStaff/PendingStaffDashboard'
+import AddAdmin from './components/admin/AddAdmin'
 
 const App = () => {
 
@@ -61,7 +61,7 @@ const App = () => {
           element: <ManagerDashboard />
         },
         {
-          path: '/update-manager',
+          path: '/update-manager/:id',
           element: <UpdateManager />
         },
         {
@@ -69,7 +69,7 @@ const App = () => {
           element: <HouseKeeperDashboard />
         },
         {
-          path: '/update-house-keeper',
+          path: '/update-house-keeper/:id',
           element: <UpdateHouseKeeper />
         },
         {
@@ -77,7 +77,7 @@ const App = () => {
           element: <ReceptionistDashboard />
         },
         {
-          path: '/update-receptionist',
+          path: '/update-receptionist/:id',
           element: <UpdateReceptionist />
         },
         {
@@ -85,7 +85,7 @@ const App = () => {
           element: <PendingStaffDashboard />
         },
         {
-          path: '/update-pendingStaff',
+          path: '/update-pendingStaff/:id',
           element: <UpdateReceptionist />
         },
         {
